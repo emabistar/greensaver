@@ -1,3 +1,6 @@
+// .gitignore
+
+
 // backend/index.js
 require('dotenv').config(); // Load environment variables (SALLING_BEARER_TOKEN)
 const express = require('express');
@@ -14,7 +17,8 @@ if (!process.env.SALLING_BEARER_TOKEN) {
 }
 console.log('✅ SALLING_BEARER_TOKEN loaded');
 
-// Middleware\app.use(bodyParser.json());
+// Middleware
+app.use(bodyParser.json());
 
 // Mount API routes
 app.use('/api', apiRoutes);

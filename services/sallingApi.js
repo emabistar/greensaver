@@ -25,3 +25,18 @@ module.exports = {
     return res.data;
   }
 };
+
+// Add alongside fetchNearbyFoodWaste and fetchStoreFoodWaste
+async function fetchNearbyFoodWasteGeo(geo, radius = 5) {
+  const key = `nearby:${geo}:${radius}`;
+  if (cache.has(key)) return cache.get(key);
+  const url = `${BASE_URL}${FOOD_WASTE_URL}?geo=${encodeURIComponent(geo)}&radius=${radius}`;
+  const res = await axios.get(url, { headers: AUTH_HEADER });
+  cache.set(key, res.data);
+  return res.data;
+}
+
+module.exports = {
+  fetchNearbyFoodWasteGeo,
+  
+};
